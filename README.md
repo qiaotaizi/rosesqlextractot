@@ -16,7 +16,7 @@ git clone git@github.com:qiaotaizi/rosesqlextractot.git
 <dependency>
   <groupId>com.jaiz.utils</groupId>
   <artifactId>rosesqlextractot</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.1-SNAPSHOT</version>
 </dependency>
 ```
 在你的项目的任意java类中  
