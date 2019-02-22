@@ -11,6 +11,9 @@ rose框架DAO层sql代码抽取器
 git clone git@github.com:qiaotaizi/rosesqlextractot.git
 ```
 使用maven编译至本地仓库
+```
+mvn clean install -Dmaven.test.skip=true
+```
 在pom中添加依赖如下:  
 ```
 <dependency>
