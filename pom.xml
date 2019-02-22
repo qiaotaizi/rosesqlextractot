@@ -6,7 +6,7 @@
 
   <groupId>com.jaiz.utils</groupId>
   <artifactId>rosesqlextractot</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.2-SNAPSHOT</version>
 
   <name>Rose SQL Extractor</name>
 

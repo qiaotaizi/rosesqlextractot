@@ -1,7 +1,5 @@
 package com.jaiz.utils;
 
-import com.jaiz.utils.exceptions.SQLLineBuilder;
-
 import java.util.*;
 
 /**
@@ -60,11 +58,15 @@ class SQLBeautifier {
         char[] sqlCharArr = sql.toCharArray();
         //游标处于引号内标识
         boolean inQuote = false;
+        //游标处于花括号内标识
+        boolean inBrace = false;
         List<SQLLineBuilder> lines = new ArrayList<>();
         SQLLineBuilder currentLine = new SQLLineBuilder(selectDepth);
 
         //逐字符遍历
         while (cursorForSqlCharArr < sqlCharArr.length) {
+            //引号内的字符不特别处理
+            //直接进StringBuilder
             if (sqlCharArr[cursorForSqlCharArr] == '\'') {
                 inQuote = !inQuote;
                 currentLine.append(sqlCharArr[cursorForSqlCharArr]);
@@ -72,12 +74,31 @@ class SQLBeautifier {
                 continue;
             }
             if (inQuote) {
-                //引号内的字符不特别处理
-                //直接进StringBuilder
                 currentLine.append(sqlCharArr[cursorForSqlCharArr]);
                 cursorForSqlCharArr++;
                 continue;
             }
+
+            //大括号内的字符不特别处理
+            //直接进StringBuilder
+            if (sqlCharArr[cursorForSqlCharArr] == '{') {
+                inBrace = true;
+                currentLine.append(sqlCharArr[cursorForSqlCharArr]);
+                cursorForSqlCharArr++;
+                continue;
+            }
+            if (sqlCharArr[cursorForSqlCharArr] == '}') {
+                inBrace = false;
+                currentLine.append(sqlCharArr[cursorForSqlCharArr]);
+                cursorForSqlCharArr++;
+                continue;
+            }
+            if (inBrace) {
+                currentLine.append(sqlCharArr[cursorForSqlCharArr]);
+                cursorForSqlCharArr++;
+                continue;
+            }
+
             //读到左右括号时,控制深度
             if (sqlCharArr[cursorForSqlCharArr] == '(') {
                 bracketDepth++;
@@ -131,7 +152,7 @@ class SQLBeautifier {
                     case NO:
                         //若否,将单词/词组纳入旧的SQLLineBuilder,清空容器并跳出循环
                         //附加:如果currentline已经过长,也需要换行
-                        if (currentLine.isTooLong()) {
+                        if (currentLine.isTooLong() && cursorForWordCharArr>1) {
                             lines.add(currentLine);
                             currentLine = new SQLLineBuilder(bracketDepth);
                         }

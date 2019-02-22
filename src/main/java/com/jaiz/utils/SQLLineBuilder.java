@@ -1,4 +1,4 @@
-package com.jaiz.utils.exceptions;
+package com.jaiz.utils;
 
 import java.util.List;
 
@@ -8,6 +8,11 @@ import java.util.List;
 public class SQLLineBuilder {
 
     private StringBuilder content;
+
+    /**
+     * 建议长度:70字符
+     */
+    private int recommendedLength=70;
 
     public SQLLineBuilder(int tabCount){
         this.content=new StringBuilder();
@@ -26,13 +31,18 @@ public class SQLLineBuilder {
     }
 
     /**
-     * 尾部添加
+     * 尾部添加一字符
      * @param c
      */
     public void append(char c) {
         content.append(c);
     }
 
+    /**
+     * 尾部添加字符数组
+     * @param cs
+     * @param limit
+     */
     public void appendChars(char[] cs,int limit){
         content.append(cs,0,limit);
     }
@@ -49,9 +59,4 @@ public class SQLLineBuilder {
     public boolean isTooLong() {
         return content.length()>recommendedLength;
     }
-
-    /**
-     * 建议长度:70字符
-     */
-    private int recommendedLength=70;
 }
