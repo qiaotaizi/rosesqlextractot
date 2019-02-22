@@ -13,6 +13,7 @@ public class SQLLineBuilder {
         this.content=new StringBuilder();
         for(int i=0;i<tabCount;i++){
             content.append('\t');
+            this.recommendedLength-=2;
         }
     }
 
@@ -41,4 +42,16 @@ public class SQLLineBuilder {
         return this.content.toString();
     }
 
+    /**
+     * 判断一行内容是否已经过长
+     * @return
+     */
+    public boolean isTooLong() {
+        return content.length()>recommendedLength;
+    }
+
+    /**
+     * 建议长度:70字符
+     */
+    private int recommendedLength=70;
 }

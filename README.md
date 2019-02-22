@@ -20,8 +20,11 @@ git clone git@github.com:qiaotaizi/rosesqlextractot.git
 </dependency>
 ```
 在你的项目的任意java类中  
-使用main方法运行如下代码
+加入如下代码并运行
 ```
-ExtractUtil.work();
+public static void main(String[] args) throws NoSuchMethodException, com.jaiz.utils.exceptions.SQLNotFoundException {
+    String sql=com.jaiz.utils.ExtractUtil.work(BossSuccessAuctionDAO.class,"selectMaxIdDealCarDetail");
+    System.out.println(sql);
+}
 ```
 注意:调试完毕后从pom中删除依赖

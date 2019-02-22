@@ -94,9 +94,9 @@ class SQLBeautifier {
             }
             boolean continueFlag = true;
             while (continueFlag) {
-                //读取单词至容器,并取得使单词断开的字符(可能是' ','(',')')
+                //读取单词至容器,并取得使单词断开的字符(可能是' ','(',')',',')
                 char wordBreaker = readWordIntoContainer(sqlCharArr);
-                //遇到空格时检查单词是否处于换行关键字数组 或疑似处于换行关键字数组并进一步检查是否处于换行关键字数组
+                //检查单词是否处于换行关键字数组 或疑似处于换行关键字数组并进一步检查是否处于换行关键字数组
                 NextLineStatusEnum status = checkNeedNewLine();
                 readCharIntoContainer(wordBreaker);
                 switch (status) {
@@ -111,7 +111,7 @@ class SQLBeautifier {
                             cleanWordCharArray();
                             continueFlag = false;
                         } else {
-                            //不需要换行,仿照case NO
+                            //句首不需要换行,仿照case NO
                             currentLine.appendChars(wordCharArray, cursorForWordCharArr);
                             cleanWordCharArray();
                             continueFlag = false;
@@ -130,6 +130,11 @@ class SQLBeautifier {
                         break;
                     case NO:
                         //若否,将单词/词组纳入旧的SQLLineBuilder,清空容器并跳出循环
+                        //附加:如果currentline已经过长,也需要换行
+                        if (currentLine.isTooLong()) {
+                            lines.add(currentLine);
+                            currentLine = new SQLLineBuilder(bracketDepth);
+                        }
                         currentLine.appendChars(wordCharArray, cursorForWordCharArr);
                         cleanWordCharArray();
                         continueFlag = false;
@@ -153,7 +158,6 @@ class SQLBeautifier {
         if (bracketDepth == bracketDepthStack.getFirst().intValue()) {
             bracketDepthStack.removeFirst();
             selectDepth--;
-            //stackTopRemoved = true;
         }
         if (selectDepth < 0) {
             selectDepth = 0;
@@ -248,8 +252,8 @@ class SQLBeautifier {
      */
     private char readWordIntoContainer(char[] sqlCharArr) {
         while (cursorForSqlCharArr < sqlCharArr.length) {
-            if (sqlCharArr[cursorForSqlCharArr] == ' ') {
-                //读到空格跳出循环,并返回单词之后的字符
+            if (sqlCharArr[cursorForSqlCharArr] == ' ' || sqlCharArr[cursorForSqlCharArr] == ',') {
+                //读到空格或逗号跳出循环,并返回单词之后的字符
                 return sqlCharArr[cursorForSqlCharArr];
             }
             //读到括号跳出循环,并返回单词之后的字符,控制括号深度
