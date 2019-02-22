@@ -7,7 +7,14 @@ import java.util.List;
  */
 public class SQLLineBuilder {
 
-    private StringBuilder content=new StringBuilder();
+    private StringBuilder content;
+
+    public SQLLineBuilder(int tabCount){
+        this.content=new StringBuilder();
+        for(int i=0;i<tabCount;i++){
+            content.append('\t');
+        }
+    }
 
     public static String listToString(List<SQLLineBuilder> lines) {
         StringBuilder sb=new StringBuilder();
