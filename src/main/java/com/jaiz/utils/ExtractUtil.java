@@ -13,9 +13,4 @@ public class ExtractUtil
         return new SQLBeautifier().beautify(new SQLExtractor<>(daoClass,methodName).extract());
     }
 
-    public static void main( String[] args ) throws NoSuchMethodException, SQLNotFoundException {
-        String sqlB=work(TestInterface.class,"testDao");
-
-        System.out.println(sqlB);
-    }
 }

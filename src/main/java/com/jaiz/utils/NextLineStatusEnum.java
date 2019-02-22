@@ -19,6 +19,9 @@ public enum NextLineStatusEnum {
      */
     SUSPECT,
 
+    /**
+     * select子查询特殊处理
+     */
     SELECT,
 
 }

@@ -36,24 +36,9 @@ public class SQLLineBuilder {
         content.append(cs,0,limit);
     }
 
-    /**
-     * 首部添加
-     * @param c
-     */
-    public void appendLeft(char c){
-        content.insert(0,c);
-    }
-
     @Override
     public String toString() {
         return this.content.toString();
     }
 
-//    public static void main(String[] args) {
-//
-//        SQLLineBuilder builder=new SQLLineBuilder();
-//        char[] cs="select".toCharArray();
-//        builder.appendChars(cs);
-//        System.out.println(builder);
-//    }
 }

@@ -47,8 +47,6 @@ class SQLBeautifier {
     int bracketDepth = 0;
     //select深度,也是添加tab的数量
     int selectDepth = 0;
-    //
-    //boolean stackTopRemoved = false;
 
     /**
      * 美化
@@ -291,54 +289,4 @@ class SQLBeautifier {
         wordCharArray = Arrays.copyOf(wordCharArray, wordCharArray.length + wordCharArray.length / 2);
     }
 
-    public static void main(String[] args) {
-        SQLBeautifier sqlBeautifier = new SQLBeautifier();
-        String s = "select * from (select c1,c2 from table3 t3) t1 left join table2 t2 on t1.id=t2.tId where id=0 and name='text' order by t1.id limit 10,20";
-        String s1 = sqlBeautifier.beautify(s);
-        System.out.println(s1);
-
-//        测试容器扩展
-//        sqlBeautifier.wordCharArray[0]='a';
-//        System.out.println(Arrays.toString(sqlBeautifier.wordCharArray));
-//        System.out.println(sqlBeautifier.wordCharArray.length);
-//        System.out.println();
-//        char[] newArr=sqlBeautifier.expandWordCharArray();
-//        System.out.println(Arrays.toString(newArr));
-//        System.out.println(newArr.length);
-
-//        测试读取一个单词
-//        char[] sqlArr=s.toCharArray();
-//        sqlBeautifier.readWordIntoContainer(sqlArr);
-//        System.out.println(Arrays.toString(sqlBeautifier.wordCharArray));
-
-//        测试判断字符相等
-//        System.out.println(sqlBeautifier.sameCharIgnoreCase('A','1'));
-
-//        测试换行检查
-//        String word = "SELECT";
-//        char[] sqlArr = word.toCharArray();
-//        sqlBeautifier.readWordIntoContainer(sqlArr);
-//        System.out.println(sqlBeautifier.checkNeedNewLine());
-
-//        测试读取单个字符进入容器
-//        sqlBeautifier.readWordIntoContainer("selecteeee".toCharArray());
-//        System.out.println(Arrays.toString(sqlBeautifier.wordCharArray));
-//        sqlBeautifier.readCharIntoContainer(' ');
-//        sqlBeautifier.readCharIntoContainer('a');
-//        System.out.println(Arrays.toString(sqlBeautifier.wordCharArray));
-
-//        测试链表
-//        sqlBeautifier.bracketDepthStack.addFirst(sqlBeautifier.bracketDepth);
-//        sqlBeautifier.bracketDepth++;
-//        sqlBeautifier.bracketDepthStack.addFirst(sqlBeautifier.bracketDepth);
-//        sqlBeautifier.bracketDepth++;
-//        sqlBeautifier.bracketDepthStack.addFirst(sqlBeautifier.bracketDepth);
-//        sqlBeautifier.bracketDepth++;
-//        sqlBeautifier.bracketDepthStack.addFirst(sqlBeautifier.bracketDepth);
-//        sqlBeautifier.bracketDepth++;
-//        sqlBeautifier.bracketDepthStack.addFirst(sqlBeautifier.bracketDepth);
-//        sqlBeautifier.bracketDepth--;
-//        sqlBeautifier.bracketDepthStack.removeFirst();
-//        System.out.println(sqlBeautifier.bracketDepthStack);
-    }
 }
