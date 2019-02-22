@@ -1,6 +1,5 @@
 package com.jaiz.utils.exceptions;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,12 +9,24 @@ public class SQLLineBuilder {
 
     private StringBuilder content=new StringBuilder();
 
+    public static String listToString(List<SQLLineBuilder> lines) {
+        StringBuilder sb=new StringBuilder();
+        for(SQLLineBuilder sql:lines){
+            sb.append(sql.toString()).append('\n');
+        }
+        return sb.toString();
+    }
+
     /**
      * 尾部添加
      * @param c
      */
     public void append(char c) {
         content.append(c);
+    }
+
+    public void appendChars(char[] cs,int limit){
+        content.append(cs,0,limit);
     }
 
     /**
@@ -31,17 +42,11 @@ public class SQLLineBuilder {
         return this.content.toString();
     }
 
-    public static void main(String[] args) {
-
-        List<SQLLineBuilder> list=new ArrayList<>();
-        SQLLineBuilder cur=new SQLLineBuilder();
-        cur.append('a');
-        list.add(cur);
-        cur=new SQLLineBuilder();
-        cur.append('b');
-        list.add(cur);
-        for(SQLLineBuilder b:list){
-            System.out.println(b);
-        }
-    }
+//    public static void main(String[] args) {
+//
+//        SQLLineBuilder builder=new SQLLineBuilder();
+//        char[] cs="select".toCharArray();
+//        builder.appendChars(cs);
+//        System.out.println(builder);
+//    }
 }

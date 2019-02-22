@@ -17,6 +17,6 @@ public enum NextLineStatusEnum {
     /**
      * 疑似需要换行,需要进一步检查
      */
-    SUSPECT;
+    SUSPECT,
 
 }
