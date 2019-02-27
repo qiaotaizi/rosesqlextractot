@@ -17,7 +17,7 @@ git clone git@github.com:qiaotaizi/rosesqlextractot.git
 mvn clean install -Dmaven.test.skip=true
 ```
 在pom中添加依赖如下:  
-```
+```xml
 <dependency>
   <groupId>com.jaiz.utils</groupId>
   <artifactId>rosesqlextractot</artifactId>
@@ -29,7 +29,7 @@ mvn clean install -Dmaven.test.skip=true
 sql输出自选  
 运行完毕可以直接从剪贴板中访问sql  
 粘贴在Navicat等数据库可视化工具中查看
-```
+```java
 public static void main(String[] args) throws NoSuchMethodException, com.jaiz.utils.exceptions.SQLNotFoundException {
     String sql=com.jaiz.utils.ExtractUtil.work(${daoClass},${methodName});
     //System.out.println(sql);
