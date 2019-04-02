@@ -19,11 +19,14 @@ public class SQLScanner {
 
     private List<SQLInfo> sqlList=new ArrayList<>();
 
-    private SQLBeautifier beautifier=new SQLBeautifier();
-
     private SQLExtractor extractor=new SQLExtractor();
 
-
+    /**
+     * 默认包名为com.ttpai,方便调用
+     */
+    public void defaultScan(){
+        scan("com.ttpai");
+    }
 
     /**
      * 扫描包名下含有ScanTarget注解的方法,并抽取sql
@@ -38,6 +41,10 @@ public class SQLScanner {
     }
 
     private void copyAllSQLToClipboard() {
+        if(sqlList.size()==0){
+            System.out.println("扫描未发现目标sql");
+            return;
+        }
         StringBuilder sb=new StringBuilder();
         for(SQLInfo sqlInfo:sqlList){
             sb.append("# ").append(sqlInfo.getClassName()).append(".").append(sqlInfo.getMethodName())
@@ -46,7 +53,7 @@ public class SQLScanner {
                     .append(System.lineSeparator())
                     .append(System.lineSeparator());
         }
-
+        ClipboardUtil.copyToClipBoard(sb.toString());
     }
 
     private void findClassesInPackAndExtractSQL(String packName){
@@ -92,7 +99,8 @@ public class SQLScanner {
                         continue;
                     }
                     try {
-                        String beautifiedSql=beautifier.beautify(extractor.extract(m));
+                        String unBeautifiedSql=extractor.extract(m);
+                        String beautifiedSql=new SQLBeautifier().beautify(unBeautifiedSql);
                         SQLInfo sqlInfo=new SQLInfo();
                         sqlInfo.setClassName(clazz.getName());
                         sqlInfo.setMethodName(m.getName());

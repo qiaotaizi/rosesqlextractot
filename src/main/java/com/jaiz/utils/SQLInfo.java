@@ -1,6 +1,6 @@
 package com.jaiz.utils;
 
-public class SQLInfo {
+class SQLInfo {
 
     private String sql;
 

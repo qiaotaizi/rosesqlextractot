@@ -3,7 +3,7 @@ package com.jaiz.utils;
 /**
  * 换行状态枚举
  */
-public enum NextLineStatusEnum {
+enum NextLineStatusEnum {
     /**
      * 需要换行
      */

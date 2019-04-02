@@ -14,4 +14,10 @@ public class AppTest
         String sql=ExtractUtil.work(TestDAO.class,"testSelect");
         System.out.println(sql);
     }
+
+    @Test
+    public void scanTest(){
+        new SQLScanner().scan("com.jaiz.utils");
+        new SQLScanner().defaultScan();
+    }
 }

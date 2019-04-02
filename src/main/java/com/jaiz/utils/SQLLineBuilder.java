@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * 记录sql的一行
  */
-public class SQLLineBuilder {
+class SQLLineBuilder {
 
     private StringBuilder content;
 

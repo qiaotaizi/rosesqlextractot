@@ -1,7 +1,5 @@
 package com.jaiz.utils;
 
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
 import java.util.*;
 import java.util.List;
 
@@ -168,17 +166,7 @@ class SQLBeautifier {
         }
         lines.add(currentLine);
         String result= SQLLineBuilder.listToString(lines);
-        copyToClipBoard(result);
         return result;
-    }
-
-    /**
-     * 拷贝结果至剪贴板
-     * @param result
-     */
-    private void copyToClipBoard(String result) {
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(result),null);
-        System.out.println("**结果已拷贝至剪贴板,感谢使用!**");
     }
 
     /**

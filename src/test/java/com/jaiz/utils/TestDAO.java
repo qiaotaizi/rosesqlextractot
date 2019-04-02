@@ -1,11 +1,13 @@
 package com.jaiz.utils;
 
+import com.jaiz.utils.annotations.ScanTarget;
 import net.paoding.rose.jade.annotation.DAO;
 import net.paoding.rose.jade.annotation.SQL;
 
 @DAO
 public interface TestDAO {
 
+    @ScanTarget
     @SQL("SELECT bsa.ID,bsa.AUCTION_ID,bsa.AUCTION_ADMIN_ID,bsa.AUCTION_ADMIN_NAME," +
             "bsa.AUCTION_DISTRIBUTION_ID,bsa.AUCTION_DISTRIBUTION_TIME,bsa.AUCTION_STATUS," +
             "bsa.AUCTION_STATUS,bsa.AUCTION_TIME,bsa.SURE_LIST_TIME,bsa.FINAL_C_LOOK_CAR_TIME," +
@@ -30,4 +32,8 @@ public interface TestDAO {
             "ORDER BY bfw.id DESC " +
             "LIMIT 0,1 ")
     String testSelect();
+
+    @ScanTarget
+    @SQL("SELECT bsa.ID,bsa.AUCTION_ID,bsa.AUCTION_ADMIN_ID,bsa.AUCTION_ADMIN_NAME from table")
+    String test1();
 }
