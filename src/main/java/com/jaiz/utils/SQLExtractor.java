@@ -14,9 +14,22 @@ class SQLExtractor<T> {
 
     private String targetMethodName;
 
+    public SQLExtractor(){
+
+    }
+
     public SQLExtractor(Class<T> daoClass,String targetMethodName){
         this.daoClass=daoClass;
         this.targetMethodName=targetMethodName;
+    }
+
+    public String extract(Method m) throws SQLNotFoundException {
+        SQL sqlAnnotation = m.getAnnotation(SQL.class);
+        String sqlInAnnotation = sqlAnnotation.value();
+        if(sqlAnnotation==null){
+            throw new SQLNotFoundException(targetMethodName+"方法的@SQL注解中未找到sql语句");
+        }
+        return sqlInAnnotation;
     }
 
     /**
