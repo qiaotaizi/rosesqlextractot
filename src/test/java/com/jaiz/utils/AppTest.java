@@ -17,7 +17,7 @@ public class AppTest
 
     @Test
     public void scanTest(){
-        new SQLScanner().scan("com.jaiz.utils");
+        new SQLScanner().scan("com.jaiz.utils","DAO");
         new SQLScanner().defaultScan();
     }
 }

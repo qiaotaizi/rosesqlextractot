@@ -21,18 +21,21 @@ public class SQLScanner {
 
     private SQLExtractor extractor=new SQLExtractor();
 
+    private String suffix;
+
     /**
      * 默认包名为com.ttpai,方便调用
      */
     public void defaultScan(){
-        scan("com.ttpai");
+        scan("com.ttpai","DAO");
     }
 
     /**
      * 扫描包名下含有ScanTarget注解的方法,并抽取sql
      */
-    public void scan(String packName){
-        classLoader=SQLScanner.class.getClassLoader();
+    public void scan(String packName,String suffix){
+        this.suffix=suffix;
+        this.classLoader=SQLScanner.class.getClassLoader();
         //file,jar执行不同的策略 这里不处理jar包\
         findClassesInPackAndExtractSQL(packName);
 
@@ -75,9 +78,13 @@ public class SQLScanner {
                 findClassesInPackAndExtractSQL(packName+"."+file.getName());
             }
             if(file.getName().endsWith(".class")){
+                String className=packName+"."+file.getName().replace(".class","");
+                if(!className.endsWith(suffix)){
+                    return false;
+                }
                 Class<?> clazz=null;
                 try {
-                    clazz=classLoader.loadClass(packName+"."+file.getName().replace(".class",""));
+                    clazz=classLoader.loadClass(className);
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                     return false;
@@ -110,13 +117,9 @@ public class SQLScanner {
                         e.printStackTrace();
                     }
                 }
-                return true;
+                return false;
             }
             return false;
         });
-    }
-
-    public static void main(String[] args) {
-        new SQLScanner().scan("com.jaiz.utils");
     }
 }
