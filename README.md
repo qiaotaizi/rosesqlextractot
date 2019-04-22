@@ -39,7 +39,7 @@ sql输出自选
 
 
 2.0.0版本新增包扫描抽取sql的能力  
-在你需要抽取sql的方法上加入@ScanTarget注解  
+在你需要抽取sql的方法上加入@com.jaiz.utils.annotations.ScanTarget注解  
 在你的项目的任意java类中  
 加入如下代码并运行
 
