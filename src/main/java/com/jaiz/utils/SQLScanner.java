@@ -50,7 +50,7 @@ public class SQLScanner {
         }
         StringBuilder sb=new StringBuilder();
         for(SQLInfo sqlInfo:sqlList){
-            sb.append("# ").append(sqlInfo.getClassName()).append(".").append(sqlInfo.getMethodName())
+            sb.append("-- ").append(sqlInfo.getClassName()).append(".").append(sqlInfo.getMethodName())
                     .append(System.lineSeparator())
                     .append(sqlInfo.getSql())
                     .append(System.lineSeparator())
