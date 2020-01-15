@@ -56,8 +56,8 @@ public static void main(String[] args){
 
 ```java
 public static void main(String[] args){
-        new com.jaiz.utils.FunctionalSQLScanner().defaultScanSubStr("BOSS_HELP_CHECK");
-    }
+    new com.jaiz.utils.FunctionalSQLScanner().defaultScanSubStr("SUB_STRING");
+}
 ```
 ---
 运行完毕可以直接从剪贴板中访问sql  
