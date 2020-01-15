@@ -37,7 +37,7 @@ public static void main(String[] args) throws NoSuchMethodException, com.jaiz.ut
 ```
 sql输出自选  
 
-
+---
 2.0.0版本新增包扫描抽取sql的能力  
 在你需要抽取sql的方法上加入@com.jaiz.utils.annotations.ScanTarget注解  
 在你的项目的任意java类中  
@@ -48,7 +48,7 @@ public static void main(String[] args){
     new com.jaiz.utils.SQLScanner().defaultScan();
 }
 ```
-
+---
 2.0.1版本新增包含子串sql筛选功能  
 在你的项目的任意java类中  
 加入如下代码并运行  
@@ -59,7 +59,7 @@ public static void main(String[] args){
         new com.jaiz.utils.FunctionalSQLScanner().defaultScanSubStr("BOSS_HELP_CHECK");
     }
 ```
-
+---
 运行完毕可以直接从剪贴板中访问sql  
 粘贴在Navicat等数据库可视化工具中查看  
 注意:调试完毕后删除pom依赖和测试java代码
