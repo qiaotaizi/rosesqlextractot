@@ -24,7 +24,7 @@ mvn clean install -Dmaven.test.skip=true
 <dependency>
   <groupId>com.jaiz.utils</groupId>
   <artifactId>rosesqlextractot</artifactId>
-  <version>2.0.0</version>
+  <version>2.0.1</version>
 </dependency>
 ```
 在你的项目的任意java类中  
