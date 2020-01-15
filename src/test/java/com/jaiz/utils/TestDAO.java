@@ -36,4 +36,7 @@ public interface TestDAO {
     @ScanTarget
     @SQL("SELECT bsa.ID,bsa.AUCTION_ID,bsa.AUCTION_ADMIN_ID,bsa.AUCTION_ADMIN_NAME from table")
     String test1();
+
+    @SQL("SELECT * FROM BOSS_HELP_CHECK LIMIT 1")
+    String test2();
 }

@@ -19,7 +19,7 @@ public class SQLScanner {
 
     private List<SQLInfo> sqlList=new ArrayList<>();
 
-    private SQLExtractor extractor=new SQLExtractor();
+    private SQLExtractor<?> extractor=new SQLExtractor<>();
 
     private String suffix;
 
@@ -82,7 +82,7 @@ public class SQLScanner {
                 if(!className.endsWith(suffix)){
                     return false;
                 }
-                Class<?> clazz=null;
+                Class<?> clazz;
                 try {
                     clazz=classLoader.loadClass(className);
                 } catch (ClassNotFoundException e) {

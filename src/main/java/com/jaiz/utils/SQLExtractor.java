@@ -2,6 +2,7 @@ package com.jaiz.utils;
 
 import com.jaiz.utils.exceptions.SQLNotFoundException;
 import net.paoding.rose.jade.annotation.SQL;
+import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Method;
 
@@ -26,7 +27,7 @@ class SQLExtractor<T> {
     public String extract(Method m) throws SQLNotFoundException {
         SQL sqlAnnotation = m.getAnnotation(SQL.class);
         String sqlInAnnotation = sqlAnnotation.value();
-        if(sqlAnnotation==null){
+        if(StringUtils.isBlank(sqlInAnnotation)){
             throw new SQLNotFoundException(targetMethodName+"方法的@SQL注解中未找到sql语句");
         }
         return sqlInAnnotation;

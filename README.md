@@ -49,6 +49,17 @@ public static void main(String[] args){
 }
 ```
 
+2.0.1版本新增包含子串sql筛选功能  
+在你的项目的任意java类中  
+加入如下代码并运行  
+最终将筛选出所有含子串的sql
+
+```java
+public static void main(String[] args){
+        new com.jaiz.utils.FunctionalSQLScanner().defaultScanSubStr("BOSS_HELP_CHECK");
+    }
+```
+
 运行完毕可以直接从剪贴板中访问sql  
 粘贴在Navicat等数据库可视化工具中查看  
 注意:调试完毕后删除pom依赖和测试java代码
